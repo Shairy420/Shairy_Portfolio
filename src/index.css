@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: #ffffff;
+  --color-ink: #111111;
+  --color-signal: #ff3038;
+  --color-mist: #fafafa;
+  --color-muted: #777777;
+  --color-line: #e6e6e6;
+
+  --font-display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-stretch: 112%;
+    font-weight: 850;
+    letter-spacing: -0.035em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  /* Masked line used by GSAP reveals: inner span slides up from below the mask. */
+  .line-mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+    margin-bottom: -0.06em;
+  }
+  .line-mask > span {
+    display: block;
+  }
+
+  /*
+   * The keyed walking video sits on pure white. Its frame is 16:9 with the
+   * subject finishing at the frame's centre, so we size the stage and offset
+   * it so that centre lands in the right third of the viewport.
+   */
+  .hero-stage {
+    --w: min(80vw, calc((100svh - 72px) * 1.7778));
+    position: absolute;
+    bottom: 0;
+    width: var(--w);
+    aspect-ratio: 16 / 9;
+    left: calc(72vw - var(--w) / 2);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 14%);
+  }
+  @media (max-width: 767px) {
+    .hero-stage {
+      --w: 170vw;
+      left: calc(58vw - var(--w) / 2);
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+  .hero-stage video,
+  .hero-stage img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Multiply keeps compression noise in the white background invisible. */
+    mix-blend-mode: multiply;
+  }
+}
