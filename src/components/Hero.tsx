@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
-import { ArrowDown, RotateCcw, Volume2, VolumeX } from 'lucide-react'
+import { ArrowDown, RotateCcw } from 'lucide-react'
 import { gsap } from '../lib/gsap'
 import { markVideoSettled } from '../lib/readiness'
 import { profile } from '../content'
@@ -10,7 +10,6 @@ export function Hero({ start, reducedMotion }: Props) {
   const root = useRef<HTMLElement>(null)
   const video = useRef<HTMLVideoElement>(null)
   const tl = useRef<gsap.core.Timeline | null>(null)
-  const [muted, setMuted] = useState(true)
   const [showStill, setShowStill] = useState(reducedMotion)
   const [ended, setEnded] = useState(false)
 
@@ -74,14 +73,6 @@ export function Hero({ start, reducedMotion }: Props) {
       .finally(() => tl.current?.play(0))
   }, [start, reducedMotion])
 
-  const toggleSound = useCallback(() => {
-    const v = video.current
-    if (!v) return
-    v.muted = !v.muted
-    setMuted(v.muted)
-    if (!v.muted && v.paused && !v.ended) v.play().catch(() => {})
-  }, [])
-
   const replay = useCallback(() => {
     const v = video.current
     if (!v) return
@@ -131,7 +122,7 @@ export function Hero({ start, reducedMotion }: Props) {
           >
             {name.map((ch, i) => (
               <span key={i} className="line-mask" aria-hidden="true">
-                <span data-char>{ch}</span>
+                <span data-char className="grad-text">{ch}</span>
               </span>
             ))}
           </h1>
@@ -176,31 +167,16 @@ export function Hero({ start, reducedMotion }: Props) {
         </div>
       </div>
 
-      {!reducedMotion && (
+      {!reducedMotion && ended && (
         <div className="absolute right-5 bottom-5 z-10 flex gap-2 sm:right-8 md:right-12 md:bottom-8 lg:right-16">
-          {ended && (
-            <button
-              type="button"
-              data-hero="ui"
-              onClick={replay}
-              className="inline-flex items-center gap-2 border border-ink/15 bg-paper/80 px-3 py-2 text-xs font-semibold text-ink backdrop-blur-sm hover:border-ink"
-            >
-              <RotateCcw className="size-3.5" aria-hidden="true" />
-              Replay
-            </button>
-          )}
-          {!showStill && (
-            <button
-              type="button"
-              data-hero="ui"
-              onClick={toggleSound}
-              aria-pressed={!muted}
-              className="inline-flex items-center gap-2 border border-ink/15 bg-paper/80 px-3 py-2 text-xs font-semibold text-ink backdrop-blur-sm hover:border-ink"
-            >
-              {muted ? <VolumeX className="size-3.5" aria-hidden="true" /> : <Volume2 className="size-3.5 text-signal" aria-hidden="true" />}
-              {muted ? 'Sound off' : 'Sound on'}
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={replay}
+            className="inline-flex items-center gap-2 border border-ink/15 bg-paper/80 px-3 py-2 text-xs font-semibold text-ink backdrop-blur-sm hover:border-ink"
+          >
+            <RotateCcw className="size-3.5" aria-hidden="true" />
+            Replay
+          </button>
         </div>
       )}
     </section>

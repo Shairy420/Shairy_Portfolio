@@ -1,17 +1,26 @@
 @import 'tailwindcss';
 
+/*
+ * Pearl Grey & Rose Gold: navy ink echoes her navy dress, so the dark sections
+ * (Work, certifications) are navy too.
+ */
 @theme {
-  --color-paper: #ffffff;
-  --color-ink: #111111;
-  --color-signal: #ff3038;
-  --color-mist: #fafafa;
-  --color-muted: #777777;
-  --color-line: #e6e6e6;
+  --color-paper: #f2f1f0;
+  --color-ink: #1b2a41;
+  --color-signal: #b76e79;
+  --color-mist: #e8e6e4;
+  --color-muted: #6b7280;
+  --color-line: #dddad7;
 
   --font-display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Rose gold for accent text. Vertical, so split letters stay continuous. */
+:root {
+  --grad: linear-gradient(180deg, #f1c3b4 0%, #cc8a7a 45%, #9c5a52 75%, #e0a596 100%);
 }
 
 @layer base {
@@ -67,6 +76,14 @@
   .line-mask > span {
     display: block;
   }
+  /* Copper gradient fill for display accents. */
+  .grad-text {
+    background-image: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 
   /*
    * The keyed walking video sits on pure white. Its frame is 16:9 with the
@@ -82,6 +99,12 @@
     left: calc(72vw - var(--w) / 2);
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%);
     mask-image: linear-gradient(90deg, transparent 0, #000 14%);
+    /*
+     * Multiply drops the footage's white backdrop into the page colour. It sits
+     * on the stage, not the video, because the mask isolates the stage's
+     * contents and a blend inside it would only see transparency.
+     */
+    mix-blend-mode: multiply;
   }
   @media (max-width: 767px) {
     .hero-stage {
@@ -96,7 +119,34 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    /* Multiply keeps compression noise in the white background invisible. */
-    mix-blend-mode: multiply;
+  }
+
+  /*
+   * Outlined marquee strip straight after the hero, on the same background so
+   * it reads as the hero's continuation. Marquee drives the motion with GSAP.
+   */
+  .marquee {
+    padding-block: clamp(1.25rem, 2.5vw, 2.25rem);
+  }
+  .marquee-item {
+    font-family: var(--font-display);
+    font-stretch: 112%;
+    font-weight: 850;
+    font-size: clamp(1.75rem, 4.5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.25px var(--color-ink);
+  }
+  .marquee-item.is-accent {
+    -webkit-text-stroke-color: var(--color-signal);
+  }
+  @media (max-width: 767px) {
+    .marquee-item {
+      -webkit-text-stroke-width: 1px;
+    }
   }
 }

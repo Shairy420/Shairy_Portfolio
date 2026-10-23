@@ -23,9 +23,9 @@ const shell = 'mx-auto max-w-[1600px] px-5 sm:px-8 md:px-12 lg:px-16'
 
 export function About() {
   return (
-    <section id="about" className="scroll-mt-16 border-t border-line bg-paper py-24 md:py-36">
+    <section id="about" className="scroll-mt-16 bg-paper pt-12 pb-24 md:pt-20 md:pb-36">
       <div className={shell}>
-        <SectionHead index="01" label="About" title={<>Security, tested <span className="text-signal">the hard way.</span></>} />
+        <SectionHead index="01" label="About" title={<>Security, tested <span className="grad-text">the hard way.</span></>} />
         <div className="grid gap-12 md:grid-cols-12">
           <p data-reveal className="font-display text-[clamp(1.4rem,2.6vw,2.4rem)] leading-[1.15] font-semibold tracking-tight text-ink md:col-span-7">
             {about.lead}
@@ -66,7 +66,7 @@ export function Work() {
             Selected work
           </p>
           <h2 data-reveal className="display mt-5 max-w-5xl text-[clamp(2.3rem,6.5vw,6rem)]">
-            Engagements, <span className="text-signal">by the numbers.</span>
+            Engagements, <span className="grad-text">by the numbers.</span>
           </h2>
           <p data-reveal className="mt-6 max-w-xl text-paper/60">
             Highlights from three years of VAPT work across two roles.
@@ -82,7 +82,7 @@ export function Work() {
                 </p>
                 <p
                   data-work-stat
-                  className={`display mt-6 text-signal ${
+                  className={`display grad-text mt-6 ${
                     w.stat.length > 3 ? 'text-[clamp(3.6rem,15vw,7.5rem)]' : 'text-[clamp(4.5rem,22vw,11rem)]'
                   }`}
                 >
@@ -138,7 +138,7 @@ export function Skills() {
   return (
     <section id="skills" className="scroll-mt-16 bg-mist py-24 md:py-36">
       <div className={shell}>
-        <SectionHead index="03" label="Skills" title={<>The <span className="text-signal">toolkit.</span></>} />
+        <SectionHead index="03" label="Skills" title={<>The <span className="grad-text">toolkit.</span></>} />
         <div className="grid border-t border-ink/10 md:grid-cols-12">
           {skills.map((g, i) => (
             <div
@@ -171,7 +171,7 @@ export function Focus() {
   return (
     <section id="focus" className="scroll-mt-16 bg-paper py-24 md:py-36">
       <div className={shell}>
-        <SectionHead index="04" label="Focus" title={<>Five attack surfaces. <span className="text-signal">One method.</span></>} />
+        <SectionHead index="04" label="Focus" title={<>Five attack surfaces. <span className="grad-text">One method.</span></>} />
 
         <ul className="border-t border-ink">
           {surfaces.map((s, i) => (
@@ -207,7 +207,7 @@ export function Experience() {
   return (
     <section id="experience" className="scroll-mt-16 border-t border-line bg-paper py-24 md:py-36">
       <div className={shell}>
-        <SectionHead index="05" label="Experience & achievements" title={<>The <span className="text-signal">record.</span></>} />
+        <SectionHead index="05" label="Experience & achievements" title={<>The <span className="grad-text">record.</span></>} />
 
         <div className="grid gap-16 lg:grid-cols-12">
           <ol className="relative lg:col-span-8" data-timeline>
@@ -273,7 +273,7 @@ export function Contact() {
         <h2 data-reveal className="display mt-6 text-[clamp(3rem,10vw,10rem)] text-ink">
           Let’s find it
           <br />
-          <span className="text-signal">before they do.</span>
+          <span className="grad-text">before they do.</span>
         </h2>
 
         <div className="mt-14 grid gap-4 md:mt-20 md:grid-cols-2">

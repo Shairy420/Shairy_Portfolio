@@ -14,6 +14,19 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/shairy-a9b2ab1a3',
 }
 
+// Scrolling ribbon along the bottom of the hero.
+export const ribbon = [
+  'Web App VAPT',
+  'API Security',
+  'Mobile Pentesting',
+  'AI & LLM Security',
+  'Network VAPT',
+  'OWASP Testing',
+  'OSINT',
+  'Risk Assessment',
+  'CEH Practical',
+]
+
 export const about = {
   lead: 'I find the weaknesses in applications before attackers do, and help teams fix them.',
   body: [

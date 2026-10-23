@@ -2,6 +2,7 @@ import { useCallback, useLayoutEffect, useState } from 'react'
 import { Preloader } from './components/Preloader'
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
+import { Marquee } from './components/Marquee'
 import { About, Contact, Experience, Focus, Skills, Work } from './components/Sections'
 import { gsap, ScrollTrigger } from './lib/gsap'
 import { useReducedMotion } from './lib/useReducedMotion'
@@ -60,6 +61,7 @@ export default function App() {
       {preloading && <Preloader reducedMotion={reducedMotion} onReveal={onReveal} onFinished={onFinished} />}
       <Nav />
       <Hero start={revealed} reducedMotion={reducedMotion} />
+      <Marquee reducedMotion={reducedMotion} />
       <main id="main">
         <About />
         <Work />

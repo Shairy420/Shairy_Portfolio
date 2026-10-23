@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Env and temp
+.env
+.env.*
+!.env.example
+*.tmp
+screenshots/
+
