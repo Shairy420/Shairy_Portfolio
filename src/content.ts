@@ -35,7 +35,7 @@ export const about = {
   ],
   facts: [
     { value: '3 yrs', label: 'VAPT experience' },
-    { value: '50+', label: 'VAPT engagements led at Acquisory' },
+    { value: '100+', label: 'VAPT engagements led at Acquisory' },
     { value: 'CEH', label: 'Practical certified' },
     { value: 'B.Tech', label: 'Computer Science, 2023' },
   ],
