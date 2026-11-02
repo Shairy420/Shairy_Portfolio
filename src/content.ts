@@ -56,7 +56,7 @@ export type WorkItem = {
 export const work: WorkItem[] = [
   {
     index: '01',
-    stat: '50+',
+    stat: '100+',
     statLabel: 'VAPT engagements',
     title: 'Full-scope VAPT across five attack surfaces',
     org: 'Acquisory Consulting LLP · 2024 – Present',
